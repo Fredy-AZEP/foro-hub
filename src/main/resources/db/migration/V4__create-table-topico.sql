@@ -1,7 +1,7 @@
 create table topicos(
     id bigint not null auto_increment,
-    titulo varchar(250) not null,
-    mensaje TEXT not null,
+    titulo varchar(250) not null unique,
+    mensaje TEXT not null unique,
     fecha_creacion datetime not null,
     usuario_id bigint not null,
     curso_id bigint not null,
