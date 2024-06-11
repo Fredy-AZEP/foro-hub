@@ -29,7 +29,7 @@ public class TopicoController {
 
     @GetMapping
     public Page<DatosListadoTopico> listadoTopicos(@PageableDefault(size = 5) Pageable paginacion){
-        return topicoRepository.findAll(paginacion).map(DatosListadoTopico::new);
+        return topicoRepository.findByStatusTrue(paginacion).map(DatosListadoTopico::new);
     }
 
     @PutMapping
@@ -37,5 +37,12 @@ public class TopicoController {
     public void actualizarTopico(@RequestBody @Valid DatosActualizarTopico datosActualizarTopico){
         Topico topico = topicoRepository.getReferenceById(datosActualizarTopico.id());
         topico.actualizarTopico(datosActualizarTopico);
+    }
+
+    @DeleteMapping("/{id}")
+    @Transactional
+    public void eliminarTopico(@PathVariable Long id){
+        Topico topico = topicoRepository.getReferenceById(id);
+        topico.desactivarTopico();
     }
 }

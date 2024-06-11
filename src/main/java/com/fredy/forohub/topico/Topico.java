@@ -53,4 +53,8 @@ public class Topico {
             this.mensaje = datosActualizarTopico.mensaje();
         }
     }
+
+    public void desactivarTopico(){
+        this.status = false;
+    }
 }
