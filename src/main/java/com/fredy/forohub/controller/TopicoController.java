@@ -9,7 +9,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("/topicos")
@@ -30,6 +29,17 @@ public class TopicoController {
     @GetMapping
     public Page<DatosListadoTopico> listadoTopicos(@PageableDefault(size = 5) Pageable paginacion){
         return topicoRepository.findByStatusTrue(paginacion).map(DatosListadoTopico::new);
+    }
+
+    @GetMapping("/{id}")
+    public DatosRespuestaTopico retornarDatos(@PathVariable Long id){
+        //Topico topico = topicoRepository.getReferenceById(id);
+        //var datosTopico = new DatosRespuestaTopico(topico.getId(),topico.getTitulo(),topico.getMensaje(),topico.getFecha_creacion(),topico.getUsuario_id(),topico.getCurso_id(),topico.getStatus());
+        //return datosTopico;
+
+        //var datos = topicoRepository.getReferenceById(id);
+        var datosTopico = new DatosRespuestaTopico(topicoRepository.getReferenceById(id));
+        return datosTopico;
     }
 
     @PutMapping
