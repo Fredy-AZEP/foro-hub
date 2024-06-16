@@ -1,5 +1,6 @@
 package com.fredy.forohub.controller;
 import com.fredy.forohub.domain.usuarios.DatosAutenticacionUsuario;
+import com.fredy.forohub.infra.security.TokenService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -18,12 +19,16 @@ public class AutenticacionController {
     @Autowired
     private AuthenticationManager authenticationManager;
 
+    @Autowired
+    private TokenService tokenService;
+
     @PostMapping
     public ResponseEntity autenticarUsuario(@RequestBody @Valid DatosAutenticacionUsuario datosAutenticacionUsuario){
 
 
-        Authentication token = new UsernamePasswordAuthenticationToken(datosAutenticacionUsuario.email(),datosAutenticacionUsuario.password());
-        authenticationManager.authenticate(token);
-        return ResponseEntity.ok().build();
+        Authentication authToken = new UsernamePasswordAuthenticationToken(datosAutenticacionUsuario.email(),datosAutenticacionUsuario.password());
+        authenticationManager.authenticate(authToken);
+        var JWToken = tokenService.generarToken();
+        return ResponseEntity.ok(JWToken);
     }
 }
