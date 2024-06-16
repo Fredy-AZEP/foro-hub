@@ -1,7 +1,6 @@
 package com.fredy.forohub.controller;
 
 import com.fredy.forohub.domain.topico.*;
-import com.fredy.forohub.topico.*;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
