@@ -1,5 +1,5 @@
 package com.fredy.forohub.controller;
-import com.fredy.forohub.usuarios.DatosAutenticacionUsuario;
+import com.fredy.forohub.domain.usuarios.DatosAutenticacionUsuario;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

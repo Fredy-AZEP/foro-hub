@@ -1,13 +1,11 @@
-package com.fredy.forohub.topico;
+package com.fredy.forohub.domain.topico;
 
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Table(name = "topicos")
