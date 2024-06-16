@@ -1,5 +1,7 @@
 package com.fredy.forohub.controller;
 import com.fredy.forohub.domain.usuarios.DatosAutenticacionUsuario;
+import com.fredy.forohub.domain.usuarios.Usuario;
+import com.fredy.forohub.infra.security.DatosJWTToken;
 import com.fredy.forohub.infra.security.TokenService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,8 +29,8 @@ public class AutenticacionController {
 
 
         Authentication authToken = new UsernamePasswordAuthenticationToken(datosAutenticacionUsuario.email(),datosAutenticacionUsuario.password());
-        authenticationManager.authenticate(authToken);
-        var JWToken = tokenService.generarToken();
-        return ResponseEntity.ok(JWToken);
+        var usuarioAutenticado = authenticationManager.authenticate(authToken);
+        var JWToken = tokenService.generarToken((Usuario) usuarioAutenticado.getPrincipal());
+        return ResponseEntity.ok(new DatosJWTToken(JWToken));
     }
 }
